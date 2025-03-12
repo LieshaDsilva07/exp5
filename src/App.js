@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ContactForm from './components/PB1/ContactForm';
+import MultiStepForm from './components/PB2/MultiStepForm';
+import Dashboard from './components/PB3/Dashboard';
+import { Button } from 'react-bootstrap';
 
 function App() {
+  const [showForm, setShowForm] = useState('contact'); 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container mt-4">
+      <div className="mb-3">
+        <Button variant="primary" onClick={() => setShowForm('contact')} className="me-2">Contact Form</Button>
+        <Button variant="secondary" onClick={() => setShowForm('multi-step')} className="me-2">Multi-Step Form</Button>
+        <Button variant="success" onClick={() => setShowForm('dashboard')}>Dashboard</Button>
+      </div>
+
+      {showForm === 'contact' && <ContactForm />}
+      {showForm === 'multi-step' && <MultiStepForm />}
+      {showForm === 'dashboard' && <Dashboard />}
     </div>
   );
 }
